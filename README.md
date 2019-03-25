@@ -1,14 +1,14 @@
-# Dockerized Jenkins for Raspberry Pi 2
+# Dockerized Jenkins for the Raspberry Pi 2
 
-This docker-compose file, installs the bare necessities to run Jenkins in a JVM inside a docker container on the Raspberry Pi 2 Model B Rev 1.1.
+This docker-compose file, installs the bare necessities to run a Jenkins JVM inside a docker container on the Raspberry Pi 2 Model B Rev 1.1.
 
 ## Usage
 
 ```bash
-docker-compose up (-d) - optional for detached option aka verbose
+docker-compose up [-d] (optional)
 ```
 
-Check installation process via logs
+Check installation process
 
 ```bash
 docker logs <container-name/id>
