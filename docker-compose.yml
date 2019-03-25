@@ -2,30 +2,21 @@ version: '2'
 services:
   jenkins:
     container_name: jenkins
-    image: debian
+    image: ubuntu
     restart: always
     volumes:
       - /etc/jenkins:/var/jenkins_home
-    environment:
-      - JENKINS_HOME=/var/jenkins_home
     network_mode: bridge
     ports:
       - 8081:8080
       - 50000:50000
     command: >
-      bash -c "apt update \
-      apt dist-upgrade -y \
-      apt install openjdk-8-jre-headless wget gnupg2 -y apt-transport-https ca-certificates curl \
-      software-properties-common libapparmor-dev git &&
-      java -version &&
-      useradd -d "$JENKINS_HOME" -u 1000 -s /bin/bash jenkins \
-      mkdir -p /var/jenkins_home \
-      chown -R jenkins:jenkins /var/jenkins_home \
-      cd /var/jenkins_home \
-      wget http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war \
-      chmod 644 /var/jenkins_home/jenkins.war \
-      rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man"
-    entrypoint:
-      - /usr/bin/java
-      - -jar
-      - /var/jenkins_home/jenkins.war
+      bash -c "apt update &&
+      apt dist-upgrade -y &&
+      apt install --no-install-recommends openjdk-8-jre-headless wget gnupg2 -y apt-transport-https cmake gcc &&
+      mkdir -p /var/jenkins_home &&
+      cd /var/jenkins_home &&
+      wget http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war &&
+      chmod 744 /var/jenkins_home/jenkins.war &&
+      rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man &&
+      java -jar -Xmxn512m jenkins.war"
