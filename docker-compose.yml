@@ -16,7 +16,7 @@ services:
       apt install --no-install-recommends openjdk-8-jre-headless wget gnupg2 -y apt-transport-https cmake gcc &&
       mkdir -p /var/jenkins_home &&
       cd /var/jenkins_home &&
-      wget http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war &&
+      wget -N http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war > jenkins.war &&
       chmod 744 /var/jenkins_home/jenkins.war &&
       rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man &&
-      java -jar -Xmxn512m jenkins.war"
+      java -jar -Xmx512m jenkins.war"
