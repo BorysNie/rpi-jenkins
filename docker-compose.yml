@@ -17,7 +17,7 @@ services:
       mkdir -p /var/jenkins_home &&
       cd /var/jenkins_home &&
       rm -rf jenkins.w* &&
-      wget http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war > jenkins.war &&
+      wget http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war &&
       chmod 744 /var/jenkins_home/jenkins.war &&
       rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man &&
       java -jar -Xmx512m jenkins.war"
